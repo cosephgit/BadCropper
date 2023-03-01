@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{95194853-974f-4666-8680-b66e040bbd3a}">
+		<property name="name">
+			<value>VolumeWind</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5a601433-230e-44e2-b6c1-21c4612efc75}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ccd9ca09-84fd-42bb-b129-ab5dabbc1126}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ccd9ca09-84fd-42bb-b129-ab5dabbc1126}">
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

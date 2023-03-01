@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{80e968cb-224c-4840-a098-6ffe6148fb52}">
+		<property name="assetPath">
+			<value>cyclone-loop.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>31.138367346938775</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d212395d-4004-4702-a3fc-1b622acff993}</destination>
+		</relationship>
+	</object>
+</objects>

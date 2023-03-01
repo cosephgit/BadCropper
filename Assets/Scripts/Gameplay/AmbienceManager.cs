@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 // this manages the ambient wind sounds and other ambient noise
 // it has a number of specific tracks and can be called to transition between them
@@ -18,7 +19,10 @@ public class AmbienceManager : MonoBehaviour
 {
     [SerializeField]float defaultVolMin = 0.1f; // the minimum volume the ambient sound can reach
     [SerializeField]float defaultVolMax = 0.5f; // the maximum volume the ambient sound can reach
-    [SerializeField]AudioSource[] ambientSource; // the default ambience
+    [Header("Audio events must be in order of: Wind, Storm, Rats")]
+    [SerializeField]StudioEventEmitter[] ambientEvents;
+    //[SerializeField]AudioSource[] ambientSource; // the default ambience
+    [SerializeField]string[] ambientEventParamName;
     [Header("Volume variation setting")]
     [SerializeField]float variationVolMinTime = 10f; // the minimum time for the next volume variation to complete
     [SerializeField]float variationVolMaxTime = 15f; // the maximum time for the next volume variation to complete
@@ -33,16 +37,18 @@ public class AmbienceManager : MonoBehaviour
     void Awake()
     {
         ambientType = Ambience.Wind;
-        trackCount = ambientSource.Length;
+        trackCount = ambientEvents.Length;
         volCurrent = new float[trackCount];
         volTarget = new float[trackCount];
         volTargetTime = new float[trackCount];
         for (int i = 0; i < trackCount; i++)
         {
+            // initialise each ambient track to 0 volume
             volCurrent[i] = 0;
             volTarget[i] = 0;
             volTargetTime[i] = 0;
-            ambientSource[i].volume = 0;
+            ambientEvents[i].SetParameter(ambientEventParamName[i], 0);
+            //ambientSource[i].volume = 0;
         }
         AmbienceDefault();
         SelectTargetVolume(); // AmbienceDefault will detect that there is no ambience change so wont set this
@@ -114,7 +120,8 @@ public class AmbienceManager : MonoBehaviour
                 }
 
                 volCurrent[i] += tickChange;
-                ambientSource[i].volume = volCurrent[i];
+                ambientEvents[i].SetParameter(ambientEventParamName[i], Global.ApparentToDecibel(volCurrent[i]));
+                //ambientSource[i].volume = volCurrent[i];
             }
         }
     }
